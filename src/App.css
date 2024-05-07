@@ -1,7 +1,5 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -12,27 +10,8 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #f17b7baa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
@@ -40,3 +19,116 @@
 .read-the-docs {
   color: #888;
 }
+
+.app {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  grid-column: 1/ 4;
+  grid-row: 1;
+  background-color: #ffc9c9;
+  display: flex;
+  flex-direction: row;
+  height:fit-content;
+}
+
+.title h1 {
+  color: rgb(230, 58, 58);
+}
+
+.section {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchForm h1 {
+  font-size: 4em;
+  margin: 2rem;
+}
+
+.label-username {
+  margin: 1rem;
+  font-weight: 500;
+  font-size: 3em;
+}
+
+.textbox {
+  padding: 10px;
+  margin: 2rem;
+  border-radius: 25px;
+  background-color: white;
+  width: 75%;
+  color: black;
+}
+
+.login-button, button {
+  display: flex;
+  justify-content: center;
+  background-color: #96f2d7;
+  border-radius: 25px;
+  width: 100%;
+  margin: 1rem;
+  font-size: 2.5em;
+  padding: 30px;
+}
+
+.section2 {
+  grid-column: 2;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-button, button {
+  display: flex;
+  justify-content: center;
+  background-color: #eebefa;
+  border-radius: 25px;
+  width: 30%;
+  margin: 1rem;
+  font-size: 2.5em;
+  padding: 30px;
+}
+
+.defaultName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.defaultName h1 {
+  color: rgb(31, 30, 30);
+  background-color: #ffbfd4;
+  width: 75%;
+  padding: 5%;
+  border-style: outset;
+  border-width: 2px 8px 2px;
+  border-color: #ffc9c9;
+}
+
