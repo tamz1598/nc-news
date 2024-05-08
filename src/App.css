@@ -88,7 +88,7 @@
   justify-content: center;
   background-color: #96f2d7;
   border-radius: 25px;
-  width: 100%;
+  width: 20vw;
   margin: 1rem;
   font-size: 2.5em;
   padding: 30px;
@@ -108,7 +108,7 @@
   justify-content: center;
   background-color: #eebefa;
   border-radius: 25px;
-  width: 30%;
+  width: 20vw;
   margin: 1rem;
   font-size: 2.5em;
   padding: 30px;
@@ -130,5 +130,31 @@
   border-style: outset;
   border-width: 2px 8px 2px;
   border-color: #ffc9c9;
+}
+
+.section3 {
+  grid-column: 2;
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.topicListContainer button {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  height: 20vh;
+  background-color: #e45e79;
+}
+
+.button-topic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-size: 4em;
+  color: #600c22;
 }
 
