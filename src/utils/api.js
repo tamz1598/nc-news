@@ -24,6 +24,16 @@ export const getArticlesById = (articleId) => {
     .catch((err) => console.log(err)) 
 }
 
+export const getCommentsBArticleId = (articleId) => {
+    return northcodersNC
+    .get(`/api/articles/${articleId}/comments`)
+    .then((response) => {
+        console.log(response)
+        return response.data
+    })
+    .catch((err) => console.log(err)) 
+}
+
 export const getUsers = () => {
     return northcodersNC
     .get('/api/users')

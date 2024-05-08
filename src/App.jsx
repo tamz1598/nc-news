@@ -1,5 +1,5 @@
 import Header from './components/Header'
-import Articles from './components/Articles'
+import ArticlesList from './components/ArticlesList'
 import Users from './components/Users'
 import Home from './components/Home'
 import Topics from './components/Topics'
@@ -16,7 +16,7 @@ function App() {
       <div className="section">
       <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/articles" element={<Articles />}/>
+          <Route path="/articles" element={<ArticlesList />}/>
           <Route path="/users" element={<Users />}/>
           <Route path="/signup" element={<DefaultUserList />}/>
           <Route path="/topics" element={<Topics />}/>
