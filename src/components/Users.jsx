@@ -1,15 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from "react";
+import { getUsers } from '../utils/api';
+import { Link } from 'react-router-dom'
 
-const Users = ({setUsername}) => {
+export default function Users(){
+    
+    const [username, setUsername] = useState("");
     const [inputUsername, setInputUsername] = useState("");
     const [userList, setUserList] = useState([]);
 
     useEffect(() => {
-        fetch(`https://be-nc-news-th.onrender.com/api/users`)
-          .then((response) => response.json())
-          .then(data => setUserList(data.users)) 
-          .catch(error => console.error('username not found:', error));
+        getUsers().then((response) => setUserList(response.users)) 
       }, []);
 
       const handleChange = (event) => {
@@ -44,9 +45,9 @@ const Users = ({setUsername}) => {
                 />
                 <button type="submit" className="login-button">Login</button>
             </form>
+            <Link to="/signup">
             <button className="signup-button" target='./DefaultUserList'>Signup</button>
+            </Link>
         </div>
     );
 }
-
-export default Users

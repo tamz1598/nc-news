@@ -23,7 +23,7 @@
 .app {
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
   width: 100vw;
   height: 100vh;
 }
@@ -156,5 +156,25 @@
   margin: auto;
   font-size: 4em;
   color: #600c22;
+}
+
+.section4 {
+  grid-column: 2;
+  grid-row: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.articlesListContainer ul {
+  overflow: scroll;
+  height: 75vh;
+}
+
+.login-link {
+  grid-column: 3;
+  margin-right: 0;
 }
 
