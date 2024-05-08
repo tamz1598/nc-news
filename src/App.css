@@ -94,15 +94,6 @@
   padding: 30px;
 }
 
-.section2 {
-  grid-column: 2;
-  grid-row: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .signup-button, button {
   display: flex;
   justify-content: center;
@@ -132,15 +123,6 @@
   border-color: #ffc9c9;
 }
 
-.section3 {
-  grid-column: 2;
-  grid-row: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .topicListContainer button {
   display: flex;
   flex-direction: column;
@@ -158,16 +140,6 @@
   color: #600c22;
 }
 
-.section4 {
-  grid-column: 2;
-  grid-row: 5;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-}
-
 .articlesListContainer ul {
   overflow: scroll;
   height: 75vh;
@@ -175,6 +147,31 @@
 
 .login-link {
   grid-column: 3;
-  margin-right: 0;
+  margin-right: 100vw;
+  margin:auto;
+}
+
+.nav-links {
+  list-style: none;
+  padding-left: 50vw;
+  margin: auto;
+}
+
+.card-numbers {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-topic{
+  margin:auto;
+
+}
+
+.card-author{
+  margin:auto;
+}
+
+.card-body {
+  padding: 10%;
 }
 
