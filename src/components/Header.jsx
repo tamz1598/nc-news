@@ -11,8 +11,10 @@ const Header = () => {
         <div className='title'>
             <h1>NC News</h1>
         </div>
-        <Link to="/users" className='login-link'>Login</Link>
-        <Link to="/topics" className='login-link'>Topics</Link>
+        <ul className='nav-links'>
+        <li><Link to="/users" className='login-link'>Login</Link></li>
+        <li><Link to="/topics" className='topics-link'>Topics</Link></li>
+        </ul>
     </div>
   )
 }

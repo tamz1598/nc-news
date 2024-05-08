@@ -4,8 +4,7 @@ import Articles_Item from './Articles_Item';
 import { getArticles } from '../utils/api';
 
 export default function Articles(){
-    // const [articles, setArticles] = useState("");
-    // const [articlesId, setArticlesId] = useState("");
+    
     const [articlesList, setArticlesList] = useState([]);
 
     useEffect(() => {
@@ -13,10 +12,6 @@ export default function Articles(){
             setArticlesList(response.articles))
     }, []);
     
-    // const handleClick = (e) => {
-    //     const articlesId = e.target.article_id;
-    //     setArticlesId(articlesId);
-    // };
 
     return (
         <div className="articlesListContainer">
@@ -26,7 +21,6 @@ export default function Articles(){
                     return <Articles_Item
                     key={article.article_id}
                     article={article}
-                    // handleClick={handleClick}
                     />
                 })}
             </ul>

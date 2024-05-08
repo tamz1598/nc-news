@@ -16,8 +16,9 @@ export const getArticles = () => {
 
 export const getArticlesById = (articleId) => {
     return northcodersNC
-    .get('/api/articles')
+    .get(`/api/articles/${articleId}`)
     .then((response) => {
+        console.log(response)
         return response.data
     })
     .catch((err) => console.log(err)) 
