@@ -175,3 +175,18 @@
   padding: 10%;
 }
 
+
+/* this is the comment section */
+
+.commentsListContainer ul{
+  overflow: scroll;
+  height: 75vh;
+}
+
+.comment-box {
+  background-color: rgb(255, 255, 255);
+  border-style: double;
+  border-color: #c3c1c1;
+  margin: 10px;
+}
+

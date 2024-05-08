@@ -2,6 +2,7 @@ import React from 'react'
 import { getArticlesById } from '../utils/api';
 import { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import Comments from './CommentsList';
 
 export default function ArticleCard(){
 
@@ -15,7 +16,7 @@ export default function ArticleCard(){
                     setArticle(response.articles);
                 })
                 .catch((error) => {
-                   
+                   console.log(error)
                 });
         }
     }, [articleId]);
@@ -35,6 +36,9 @@ export default function ArticleCard(){
         </section>
         <section>
             <p className='card-body'>{article.body}</p>
+        </section>
+        <section>
+            <Comments />
         </section>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react'
-import Articles from './Articles'
+import Articles from './ArticlesList'
 
 const Home = () => {
   return (

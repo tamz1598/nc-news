@@ -1,29 +1,17 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
-import Articles_Item from './Articles_Item';
-import { getArticles } from '../utils/api';
+import { Link } from 'react-router-dom'
 
-export default function Articles(){
-    
-    const [articlesList, setArticlesList] = useState([]);
-
-    useEffect(() => {
-        getArticles().then((response) => 
-            setArticlesList(response.articles))
-    }, []);
-    
-
-    return (
-        <div className="articlesListContainer">
-            <h1> Articles List </h1>
-            <ul>
-                {articlesList.map((article) => {
-                    return <Articles_Item
-                    key={article.article_id}
-                    article={article}
-                    />
-                })}
-            </ul>
+export default function Articles({article}) {
+  
+      return (
+        < div className='article-list'>
+            <h3> {article.title} </h3>
+            <Link to={`/articles/${article.article_id}`}>
+            <img src={article.article_img_url}/>
+            </Link>
+            <p>{article.author}</p>
+            <p>{article.topic}</p>
         </div>
-    );
-};
+      );
+}
+
