@@ -12,6 +12,7 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #f17b7baa);
 }
+
 .card {
   padding: 2em;
 }
@@ -189,4 +190,32 @@
   border-color: #c3c1c1;
   margin: 10px;
 }
+
+.logo-comment {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo-comment:hover {
+  filter: drop-shadow(0 0 2em #e20909aa);
+}
+
+/* this is for voting */
+
+.logo-like {
+  height: 6em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo-like:hover {
+  filter: drop-shadow(0 0 2em #e20909aa);
+}
+
+.button-like {
+  width:fit-content;
+  background-color: transparent;
+  margin: auto;
+}
+
 

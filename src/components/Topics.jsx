@@ -17,6 +17,11 @@ export default function Topics() {
     setTopics(topics);
     };
 
+    if (topicsLists.length === 0) {
+      console.log("Article not set, showing loading"); 
+      return <div>Loading...</div>;
+  }
+
       return (
         <div className="topicListContainer">
              {topicsLists && topicsLists.map(topic => (

@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Topics from './components/Topics'
 import DefaultUserList from './components/DefaultUserList'
 import ArticleCard from './components/ArticleCard'
+import CommentsList from './components/CommentsList'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signup" element={<DefaultUserList />}/>
           <Route path="/topics" element={<Topics />}/>
           <Route path="/articles/:articleId" element={<ArticleCard />}/>
+          <Route path="/articles/:articleId/comments" element={<CommentsList />}/>
       </Routes>
       </div>
     </div>
