@@ -1,19 +1,17 @@
 import React from 'react'
 import { useState, useEffect } from "react";
+import { getUsers } from '../utils/api';
 
-const DefaultUserList = ({setUsername}) => {
+export default function DefaultUserList(){
+
+  const [username, setUsername] = useState("");
   const [userList, setUserList] = useState([]);
   const [selectedUser, setSelectedUser] = useState('');
 
   // Fetch user data
   useEffect(() => {
-      fetch('https://be-nc-news-th.onrender.com/api/users')
-          .then(response => response.json())
-          .then(data => {
-              setUserList(data.users);
-              setSelectedUser(data.users[0].username);  // default selected user as the first in the list
-          })
-          .catch(error => console.error('Failed to load user data:', error));
+      getUsers().then((response) => 
+        setUserList(response.users)) // default selected user as the first in the list
   }, []);
 
    // Handle changing selected user
@@ -40,5 +38,3 @@ const DefaultUserList = ({setUsername}) => {
   </>
   )
 }
-
-export default DefaultUserList

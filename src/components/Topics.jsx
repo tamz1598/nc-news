@@ -1,12 +1,13 @@
 import React from 'react'
-import { useEffect } from 'react'
-import Articles from './Articles'
+import { useEffect, useState } from 'react'
+import { getTopics } from '../utils/api';
 
-const Topics = ({ topicsLists, setTopicsLists, setTopics}) => {
+export default function Topics() {
+    const [topics, setTopics] = useState("");
+    const [topicsLists, setTopicsLists] = useState([]);
 
     useEffect(() => {
-        fetch(`https://be-nc-news-th.onrender.com/api/topics`)
-          .then((response) => response.json())
+        getTopics()
           .then((data) => setTopicsLists(data.topics))
           .catch(error => console.error('topics not here:', error));
       }, [setTopicsLists]);
@@ -28,5 +29,3 @@ const Topics = ({ topicsLists, setTopicsLists, setTopics}) => {
         </div>
     );
 }
-
-export default Topics
