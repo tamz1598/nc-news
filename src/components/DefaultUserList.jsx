@@ -19,7 +19,7 @@ const DefaultUserList = ({setUsername}) => {
    // Handle changing selected user
    const handleSelectChange = (event) => {
     setSelectedUser(event.target.value);
-    setUser(event.target.value);
+    setUsername(event.target.value);
 };
 
 
@@ -29,7 +29,7 @@ const DefaultUserList = ({setUsername}) => {
         <h1> Choose default name </h1>
     </div>
       <div>
-          <select class='textbox' value={selectedUser} onChange={handleSelectChange}>
+          <select className='textbox' value={selectedUser} onChange={handleSelectChange}>
               {userList.map(user => (
                   <option key={user.username} value={user.username}>
                       {user.username}
