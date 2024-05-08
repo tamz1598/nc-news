@@ -13,13 +13,18 @@ export default function CommentsList() {
             getCommentsBArticleId(articleId)
                 .then((data) => {
                     console.log("Here is the response", data);
-                    setCommentList(data.comments);  // Assuming data.comments is the array of comments
+                    setCommentList(data.comments); 
                 })
                 .catch((error) => {
                     console.error("Error fetching comments:", error);
                 });
         }
-    }, [articleId]); // Ensuring useEffect is responsive to changes in articleId
+    }, [articleId]);
+
+    if (commentList.length === 0) {
+        console.log("Article not set, showing loading"); 
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="commentsListContainer">

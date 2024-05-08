@@ -11,8 +11,12 @@ export default function ArticlesList(){
         getArticles().then((response) => 
             setArticlesList(response.articles))
     }, []);
-    
 
+    if (articlesList.length === 0) {
+        console.log("Article not set, showing loading"); 
+        return <div>Loading...</div>;
+    }
+    
     return (
         <div className="articlesListContainer">
             <h1> Articles List </h1>
