@@ -1,7 +1,7 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext} from 'react';
-import { getCommentsByArticleId, postCommentByArticleId} from '../utils/api';
+import { getCommentsByArticleId, postCommentByArticleId, deleteCommentById} from '../utils/api';
 import Comments from './Comments';
 import { UserContext } from '../contexts/UserContext';
 
@@ -10,6 +10,7 @@ export default function CommentsList() {
     const { articleId } = useParams();
     const [commentBody, setCommentBody] = useState('');
     const { user } = useContext(UserContext); 
+    const navigate = useNavigate(); //used to refresh the page and naviagte back after posting
 
     //for loading purposes
     const [isSubmitting, setIsSubmitting] = useState(false); 
@@ -26,6 +27,8 @@ export default function CommentsList() {
                 });
         }
     }, [articleId]);
+
+    console.log("Logged-in user:", typeof user); 
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -53,7 +56,21 @@ export default function CommentsList() {
                 setIsSubmitting(false);
                 alert("Failed to post comment.");
             });
-    }
+    };
+
+    const handleDelete = (commentId) => {
+        if (window.confirm("Are you sure you want to delete this comment?")) {
+            deleteCommentById(commentId)
+                .then(() => {
+                    setCommentList(commentList.filter(comment => comment.comment_id !== commentId));
+                    alert("Comment deleted successfully!");
+                })
+                .catch(error => {
+                    console.error("Failed to delete comment:", error);
+                    alert("Failed to delete comment.");
+                });
+        }
+    };
 
     if (commentList.length === 0) {
         console.log("Article not set, showing loading"); 
@@ -63,6 +80,10 @@ export default function CommentsList() {
     if (isSubmitting) {
         return <div>Posting comment...</div>;  // Loading indicator while posting
     }
+
+    //when deleting check if user signed in is the same as the comments username
+
+    console.log(commentList)
 
     return (
         <div className="commentsListContainer">
@@ -80,7 +101,12 @@ export default function CommentsList() {
             </form>
             <ul>
                 {commentList.map((comment) => (
-                    <Comments key={comment.comment_id} comment={comment} />
+                    <li key={comment.comment_id}>
+                        <Comments comment={comment} />
+                        {user === comment.author && (
+                            <button onClick={() => handleDelete(comment.comment_id)}>Delete</button>
+                        )}
+                    </li>
                 ))}
             </ul>
         </div>
