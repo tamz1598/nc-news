@@ -1,13 +1,15 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getUsers } from '../utils/api';
 import { Link } from 'react-router-dom'
+import { UserContext } from '../contexts/UserContext';
 
 export default function Users(){
     
     const [username, setUsername] = useState("");
     const [inputUsername, setInputUsername] = useState("");
     const [userList, setUserList] = useState([]);
+    const { login } = useContext(UserContext);
 
     useEffect(() => {
         getUsers().then((response) => setUserList(response.users)) 
@@ -20,9 +22,8 @@ export default function Users(){
     const handleSubmit = (event) => {
         event.preventDefault();
         // Check if username exists in userList
-        const userExists = userList.some(user => user.username === inputUsername);
-        if (userExists) {
-            setUsername(inputUsername);
+        if (userList.some(user => user.username === inputUsername)) {
+            login(inputUsername);
             alert('Login successful');
             //username can now be carried as inputUsername
         } else {

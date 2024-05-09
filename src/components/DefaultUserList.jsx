@@ -1,12 +1,14 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getUsers } from '../utils/api';
+import { UserContext } from '../contexts/UserContext';
 
 export default function DefaultUserList(){
 
   const [username, setUsername] = useState("");
   const [userList, setUserList] = useState([]);
   const [selectedUser, setSelectedUser] = useState('');
+  const { login } = useContext(UserContext);
 
   // Fetch user data
   useEffect(() => {
@@ -16,8 +18,9 @@ export default function DefaultUserList(){
 
    // Handle changing selected user
    const handleSelectChange = (event) => {
-    setSelectedUser(event.target.value);
-    setUsername(event.target.value);
+    const username = event.target.value;
+    setSelectedUser(username);
+    setUsername(username);
 };
 
 
