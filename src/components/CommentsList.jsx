@@ -11,6 +11,9 @@ export default function CommentsList() {
     const [selectedUser, setSelectedUser] = useState('');
     const [commentBody, setCommentBody] = useState('');
 
+    //for loading purposes
+    const [isSubmitting, setIsSubmitting] = useState(false); 
+
     useEffect(() => {
         if (articleId) {
             getCommentsByArticleId(articleId)
@@ -36,15 +39,18 @@ export default function CommentsList() {
             return;
         }
         //add user and body then post
+        setIsSubmitting(true); 
         const comment = { username: selectedUser, body: commentBody };
         postCommentByArticleId(articleId, comment)
             .then(newComment => {
                 setCommentList(prev => [...prev, newComment]); //similar to vote, add previous with new
-                setCommentBody('');  // Clear the input after posting
+                setCommentBody(''); // Clear the input after posting
+                setIsSubmitting(false); 
                 alert("Comment posted successfully!");
             })
             .catch(error => {
                 console.error("Error posting comment:", error);
+                setIsSubmitting(false);
                 alert("Failed to post comment.");
             });
     }
@@ -52,6 +58,10 @@ export default function CommentsList() {
     if (commentList.length === 0) {
         console.log("Article not set, showing loading"); 
         return <div>Loading...</div>;
+    }
+
+    if (isSubmitting) {
+        return <div>Posting comment...</div>;  // Loading indicator while posting
     }
 
     //make form
