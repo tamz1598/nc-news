@@ -1,15 +1,15 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { useState, useEffect} from 'react';
-import { getCommentsByArticleId, postCommentByArticleId, getUsers } from '../utils/api';
+import { useState, useEffect, useContext} from 'react';
+import { getCommentsByArticleId, postCommentByArticleId} from '../utils/api';
 import Comments from './Comments';
+import { UserContext } from '../contexts/UserContext';
 
 export default function CommentsList() {
     const [commentList, setCommentList] = useState([]);
     const { articleId } = useParams();
-    const [userList, setUserList] = useState([]);
-    const [selectedUser, setSelectedUser] = useState('');
     const [commentBody, setCommentBody] = useState('');
+    const { user } = useContext(UserContext); 
 
     //for loading purposes
     const [isSubmitting, setIsSubmitting] = useState(false); 
@@ -25,22 +25,22 @@ export default function CommentsList() {
                     console.error("Error fetching comments:", error);
                 });
         }
-        //getUsers similar to DefaultUserList
-        getUsers()
-            .then(response => setUserList(response.users))
-            .catch(error => console.error("Error fetching users:", error));
     }, [articleId]);
 
     const handleSubmit = (e) =>{
         e.preventDefault();
+        if (!user) { // Check if a user is logged in
+            alert("`Please login to comment or select a user to signup`.");
+            return;
+        }
         // catch no input entered. Alert the user.
-        if (!selectedUser || !commentBody) {
-            alert("Please select a user and enter a comment.");
+        if (!commentBody.trim) {
+            alert("Please enter a comment.");
             return;
         }
         //add user and body then post
         setIsSubmitting(true); 
-        const comment = { username: selectedUser, body: commentBody };
+        const comment = { username: user, body: commentBody };
         postCommentByArticleId(articleId, comment)
             .then(newComment => {
                 setCommentList(prev => [...prev, newComment]); //similar to vote, add previous with new
@@ -64,24 +64,19 @@ export default function CommentsList() {
         return <div>Posting comment...</div>;  // Loading indicator while posting
     }
 
-    //make form
-    //copy and paste from my defaultUserList part
-
     return (
         <div className="commentsListContainer">
             <h1>Comments</h1>
             <form className='comment-form' onSubmit={handleSubmit}>
-                <label className='username-comment' htmlFor="username-comment">Choose a user:</label>
-                <select id="username-comment-box" value={selectedUser} onChange={e => setSelectedUser(e.target.value)}>
-                    <option value="">Select a user</option>
-                    {userList.map(user => (
-                        <option key={user.username} value={user.username}>{user.username}
-                        </option>
-                    ))}
-                </select>
-                <label htmlFor="comment">Comment:</label>
-                <textarea id="comment" value={commentBody} onChange={e => setCommentBody(e.target.value)} />
-                <button className='submit-comment' type="submit">Post Comment</button>
+                <label className='username-comment' htmlFor="comment">Your Comment</label>
+                <textarea
+                 id="comment" 
+                 value={commentBody} 
+                 onChange={e => setCommentBody(e.target.value)}
+                 placeholder="Write your comment here"
+                 disabled={isSubmitting}
+                 />
+                <button className='submit-comment' type="submit" disabled={isSubmitting || !user}>{isSubmitting ? 'Posting, you may need to refresh' : 'Post Comment'}</button>
             </form>
             <ul>
                 {commentList.map((comment) => (

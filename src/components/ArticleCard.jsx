@@ -1,11 +1,12 @@
 import React from 'react'
 import { getArticlesById } from '../utils/api';
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import commentBox from '../assets/comment-box.svg'
 import like from '../assets/love.svg'
 import { updateArticles } from '../utils/api';
+import { UserContext } from '../contexts/UserContext';
 
 export default function ArticleCard(){
 
@@ -14,6 +15,7 @@ export default function ArticleCard(){
     //want button to disable after one vote
     const [hasVoted, setHasVoted] = useState(false);
     const [voteMessage, setVoteMessage] = useState("");
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         if (articleId) {
@@ -35,6 +37,11 @@ export default function ArticleCard(){
 
     //handleVote set to false till vote
     const handleVote = () => {
+        //checks to see if user logged in
+        if (!user) {
+            setVoteMessage("Please log in to vote.");
+            return;
+        }
         if (!hasVoted) { 
         updateArticles(articleId, 1)
             .then(updatedArticle => {
