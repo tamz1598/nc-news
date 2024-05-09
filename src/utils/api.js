@@ -84,4 +84,13 @@ export const getTopics = () => {
         return response.data
     })
     .catch((err) => console.log(err))
- };
+};
+
+export const getArticlesByTopic = (topic) => {
+    return northcodersNC
+    .get(`/api/articles?topics=${topic}`)
+    .then((response) => {
+        return response.data
+    })
+    .catch((err) => console.log(err))
+};

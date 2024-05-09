@@ -8,6 +8,7 @@ import ArticleCard from './components/ArticleCard'
 import CommentsList from './components/CommentsList'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import ArticlesByTopic from './components/ArticlesByTopic'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/users" element={<Users />}/>
           <Route path="/signup" element={<DefaultUserList />}/>
           <Route path="/topics" element={<Topics />}/>
+          <Route path="/topics/:topicSlug" element={<ArticlesByTopic />}/>
           <Route path="/articles/:articleId" element={<ArticleCard />}/>
           <Route path="/articles/:articleId/comments" element={<CommentsList />}/>
       </Routes>

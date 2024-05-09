@@ -1,10 +1,13 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { getTopics } from '../utils/api';
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Topics() {
-    const [topics, setTopics] = useState("");
+    // const [topics, setTopics] = useState("");
     const [topicsLists, setTopicsLists] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getTopics()
@@ -12,9 +15,9 @@ export default function Topics() {
           .catch(error => console.error('topics not here:', error));
       }, [setTopicsLists]);
     
-    const handleClick = (e) => {
-    const topics = e.target.slug;
-    setTopics(topics);
+    const handleClick = (topicSlug) => {
+        console.log(topicSlug)
+        navigate(`/topics/${topicSlug}`);
     };
 
     if (topicsLists.length === 0) {
