@@ -56,6 +56,18 @@ export const postCommentByArticleId = (articleId, comment) => {
     .catch((err) => console.log(err)) 
 }
 
+export const deleteCommentById = (commentId) => {
+    return northcodersNC.delete(`/api/comments/${commentId}`)
+        .then(response => {
+            // You might not need to return anything for a 204 response
+            return response.data;
+        })
+        .catch(err => {
+            console.error("Failed to delete comment:", err);
+            throw err;
+        });
+};
+
 export const getUsers = () => {
     return northcodersNC
     .get('/api/users')
