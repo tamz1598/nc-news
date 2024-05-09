@@ -218,4 +218,44 @@
   margin: auto;
 }
 
+/* this is for posting a comment */
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #edc2c2;
+  padding: 2%;
+  width: 50vw;
+  margin: auto;
+  text-align: center;
+  border-style: dashed;
+}
+
+.username-comment {
+  display: flex;
+  justify-content: center;
+}
+
+#username-comment-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: white;
+  border-radius: 25px;
+  height: 20px;
+  width: 20vw;
+  color: black;
+}
+
+#comment {
+  background-color: white;
+  height: 10vh;
+  color: black;
+}
+
+.submit-comment {
+  margin: auto;
+  margin-top: 20px;
+}
 

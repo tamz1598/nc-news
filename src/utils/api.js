@@ -24,7 +24,7 @@ export const getArticlesById = (articleId) => {
     .catch((err) => console.log(err)) 
 }
 
-export const getCommentsBArticleId = (articleId) => {
+export const getCommentsByArticleId = (articleId) => {
     return northcodersNC
     .get(`/api/articles/${articleId}/comments`)
     .then((response) => {
@@ -39,6 +39,16 @@ export const updateArticles = (articleId, voteIncrement) => {
     .patch(`/api/articles/${articleId}`, {
         inc_votes: voteIncrement
     })
+    .then((response) => {
+        console.log(response)
+        return response.data
+    })
+    .catch((err) => console.log(err)) 
+}
+
+export const postCommentByArticleId = (articleId, comment) => {
+    return northcodersNC
+    .post(`/api/articles/${articleId}/comments`, comment)
     .then((response) => {
         console.log(response)
         return response.data
