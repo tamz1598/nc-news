@@ -1,14 +1,30 @@
-import React, { createContext, useState } from 'react';
-
+import React, { createContext, useState, useEffect } from 'react';
+import { getUsers } from '../utils/api';
 export const UserContext = createContext();
 
 //wrap app in the provider
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [userList, setUserList] = useState([]);
+
+    useEffect(() => {
+        getUsers().then(response => {
+            setUserList(response.users);
+            console.log(response.users)
+        }).catch(error => {
+            console.error("Failed to fetch users:", error);
+        });
+    }, []);
+
 
     const login = (username) => {
-        setUser(username);
-        console.log("Logged in as:", username);
+        const userData = userList.find(user => user.username === username);
+        if (userData) {
+            setUser(userData);
+            console.log("Logged in as:", username);
+        } else {
+            console.error("User not found");
+        }
     };
 
     const logout = () => {
