@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getArticlesByTopic } from '../utils/api';
 
 export default function ArticlesByTopic() {
@@ -33,7 +33,9 @@ export default function ArticlesByTopic() {
                         <h2>{article.title}</h2>
                         <p>{article.author}</p>
                         <p>{article.votes} Votes</p>
-                        <img src={article.article_img_url} alt={article.title} />
+                        <Link to={`/articles/${article.article_id}`}>
+                        <img src={article.article_img_url} alt={article.title} style={{ cursor: 'pointer' }} />
+                        </Link>
                         <p>{article.comment_count} Comments</p>
                     </div>
                 ))
