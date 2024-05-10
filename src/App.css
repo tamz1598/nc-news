@@ -259,3 +259,30 @@
   margin-top: 20px;
 }
 
+
+/* filter button */
+
+.filter-button {
+  width: 5vw;
+  margin-left: 90%;
+  background-color: rgb(211, 62, 62);
+}
+
+.initial-sort {
+  width: 5vw;
+  background-color: white;
+  color: black;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  margin-left: 90%;
+  width: 5vw;
+}
+
+.sortby-button{
+  display: flex;
+  width: 5vw;
+  margin-left: 0%;
+}
