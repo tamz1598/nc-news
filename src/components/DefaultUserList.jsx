@@ -18,10 +18,18 @@ export default function DefaultUserList(){
 
    // Handle changing selected user
    const handleSelectChange = (event) => {
-    const username = event.target.value;
-    setSelectedUser(username);
-    setUsername(username);
+    setSelectedUser(event.target.value);
 };
+
+    // Handle login button click
+    const handleLogin = () => {
+        if (selectedUser) {
+            login(selectedUser);
+            alert('Login successful');
+        } else {
+            alert('Please select a username from the list.');
+        }
+    };
 
 
   return (
@@ -31,12 +39,14 @@ export default function DefaultUserList(){
     </div>
       <div>
           <select className='textbox' value={selectedUser} onChange={handleSelectChange}>
+          <option value="">Select a user</option>
               {userList.map(user => (
                   <option key={user.username} value={user.username}>
                       {user.username}
                   </option>
               ))}
           </select>
+          <button className='login-button' onClick={handleLogin}>Login</button>
       </div>
   </>
   )

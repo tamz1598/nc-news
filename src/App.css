@@ -286,3 +286,23 @@
   width: 5vw;
   margin-left: 0%;
 }
+
+/* user  */
+
+.logo-user {
+  height: 6em;
+  margin:1.6em;
+  padding: 0.2em;
+  margin-right: 3em;
+  will-change: filter;
+  transition: filter 300ms;
+  border-color: rgb(13, 10, 10);
+  border-radius: 50%;
+  border-width: medium;
+  border-style: outset;
+  background-color: white;
+
+}
+.logo-user:hover {
+  filter: drop-shadow(0 0 2em #f17b7baa);
+}
