@@ -94,3 +94,15 @@ export const getArticlesByTopic = (topic) => {
     })
     .catch((err) => console.log(err))
 };
+
+export const getArticlesBySort = (sort_by, order) => {
+    return northcodersNC
+    .get(`/api/articles`, {
+        params:{sort_by, order}
+    })
+    .then((response) => {
+        return response.data
+    })
+    .catch((err) => console.log(err))
+};
+
