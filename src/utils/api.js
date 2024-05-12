@@ -50,10 +50,13 @@ export const postCommentByArticleId = (articleId, comment) => {
     return northcodersNC
     .post(`/api/articles/${articleId}/comments`, comment)
     .then((response) => {
-        console.log(response)
+        console.log("this is the response", response.data)
         return response.data
     })
-    .catch((err) => console.log(err)) 
+    .catch((error) => {
+        console.error("Error posting comment:", error);
+        throw error; // Rethrow the error to propagate it to the caller
+    }); 
 }
 
 export const deleteCommentById = (commentId) => {

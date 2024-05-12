@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function Comments({comment}){
-    console.log(comment)
     if (!comment) {
         return <div>Loading Comment...</div>;
     }

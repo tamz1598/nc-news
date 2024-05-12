@@ -28,8 +28,6 @@ export default function CommentsList() {
         }
     }, [articleId]);
 
-    console.log("Logged-in user:", typeof user); 
-
     const handleSubmit = (e) =>{
         e.preventDefault();
         if (!user) { // Check if a user is logged in
@@ -37,18 +35,21 @@ export default function CommentsList() {
             return;
         }
         // catch no input entered. Alert the user.
-        if (!commentBody.trim) {
+        if (!commentBody.trim()) {
             alert("Please enter a comment.");
             return;
         }
         //add user and body then post
         setIsSubmitting(true); 
-        const comment = { username: user, body: commentBody };
+        const comment = { username: user.username, body: commentBody };
+        console.log(commentBody)
+        console.log(user)
         postCommentByArticleId(articleId, comment)
             .then(newComment => {
                 setCommentList(prev => [...prev, newComment]); //similar to vote, add previous with new
                 setCommentBody(''); // Clear the input after posting
                 setIsSubmitting(false); 
+                console.log(newComment)
                 alert("Comment posted successfully!");
             })
             .catch(error => {
@@ -84,6 +85,7 @@ export default function CommentsList() {
     //when deleting check if user signed in is the same as the comments username
 
     console.log(commentList)
+    console.log(user)
 
     return (
         <div className="commentsListContainer">
@@ -103,7 +105,7 @@ export default function CommentsList() {
                 {commentList.map((comment) => (
                     <li key={comment.comment_id}>
                         <Comments comment={comment} />
-                        {user === comment.author && (
+                        {user && user.username === comment.author && (
                             <button onClick={() => handleDelete(comment.comment_id)}>Delete</button>
                         )}
                     </li>

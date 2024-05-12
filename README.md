@@ -1,6 +1,8 @@
-Hello!
+# NorthCoder News
 
-Welcome to my mini app, NC News.
+This is a social news website serving as the frontend to the be_nc_news_TH which can be [found here](https://github.com/tamz1598/be_nc_news_TH).
+
+The application allows you to post articles to new or existing topics and comment + vote on the articles.
 This is a a social news aggregation, web content rating and discussion website. 
 Northcoders News has articles which are divided into topics, and each article has user-curated ratings from upvotes and downvotes using the API. Users can also add comments about an article.
 

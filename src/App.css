@@ -182,6 +182,7 @@
 .commentsListContainer ul{
   overflow: scroll;
   height: 75vh;
+  list-style: none;
 }
 
 .comment-box {
